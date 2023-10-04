@@ -106,6 +106,21 @@ public class PlayerController : MonoBehaviour
         //Shooting
         if (Input.GetMouseButtonDown(0)) //mouse sinistro
         {
+            RaycastHit hit; //linea immaginaria
+            if(Physics.Raycast(camTrans.position, camTrans.forward, out hit, 50f)) //se la linea immaginaria (raycast), che va dalla posizione della videocamera fino a 50 unità verso il punto in cui sta gaurdando, colpisce un oggetto-
+                                                                                   //allora il punto verrà salvato in "hit", e if=true
+            {
+                if(Vector3.Distance(camTrans.position, hit.point) > 2) //se il player si trova abbastanza lontano da un oggetto (distanza tra player e punto di sparo > 2)
+                {
+                    firePoint.LookAt(hit.point); //il colpo si direzionerà verso il punto di "hit"
+                }
+                
+            }
+            else
+            {
+                firePoint.LookAt(camTrans.position + (camTrans.forward * 30f)); //Se il raycast non individua nessun oggetto, e si spara, allora continuerà verso la direzione della videocamera, dando l'impressione di andare dritto
+            }
+
             Instantiate(bullet, firePoint.position, firePoint.rotation); //creiamo una copia del proiettile, in modo che venga sparato
         }
 
