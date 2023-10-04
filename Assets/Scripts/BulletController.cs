@@ -31,6 +31,11 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) //quando l'oggetto associato a questo script colliderà con un altro oggetto, allora si attiverà la funizone
     {
+        if(other.gameObject.tag == "Enemy") 
+        {
+            Destroy(other.gameObject); //se il proiettile colpisce un oggetto di tipo "Enemy" allora il nemico si distruggerà
+        }
+
         Destroy(gameObject); //distrugge QUESTO oggetto, ovvero il proiettile
         Instantiate(impactEffect, transform.position + (transform.forward * (-moveSpeed * Time.deltaTime)), transform.rotation); //crea l'effetto delle particelle distrutte del proiettile
     }
