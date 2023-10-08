@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
+
 {
+
+    public static PlayerController instance; //variabile con inserito l'oggetto, che rimarrà uguale tutto il gioco
+
     public float moveSpeed, gravityModifier, jumpPower, runSpeed=12f;
     public CharacterController charCon;
 
@@ -24,6 +28,10 @@ public class PlayerController : MonoBehaviour
     public GameObject bullet;
     public Transform firePoint;
 
+    private void Awake() //funzione chiamata prima di start, quindi caricata 1 sola volta prima del caricamento del gioco
+    {
+        instance = this; //l'oggetto a cui è associato questo script (player) allora verrà inserito in "instance"
+    }
 
     void Start()
     {

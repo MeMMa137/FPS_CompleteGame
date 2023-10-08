@@ -10,6 +10,8 @@ public class BulletController : MonoBehaviour
 
     public GameObject impactEffect;
 
+    public int damage = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +33,9 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) //quando l'oggetto associato a questo script colliderà con un altro oggetto, allora si attiverà la funizone
     {
-        if(other.gameObject.tag == "Enemy") 
+        if(other.gameObject.tag == "Enemy") //se il proiettile colpisce un oggetto di tipo "Enemy"
         {
-            Destroy(other.gameObject); //se il proiettile colpisce un oggetto di tipo "Enemy" allora il nemico si distruggerà
+            other.gameObject.GetComponent<EnemyHealthController>().DamageEnemy(damage);//allora sarà chiamata la funzione per togliere vita al nemico (DamageEnemy) nella classe "EnemyHealthController"
         }
 
         Destroy(gameObject); //distrugge QUESTO oggetto, ovvero il proiettile
