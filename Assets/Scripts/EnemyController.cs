@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     public float fireRate, waitBetweenShots=2f, timeToShoot=1f; //tempo tra un colpo e l'altro del nemico statico di default, conto alla rovescia sul tempo disponibile per sparare (tra un colpo e l'altro) statico di default, tempo statico di default per "ricaricare" colpi
     private float fireCount, shotWaitCounter, shootTimeCounter;//tempo tra un colpo e l'altro del nemico, conto alla rovescia sul tempo disponibile per sparare (tra un colpo e l'altro), tempo per "ricaricare" colpi
 
+    public Animator anim;
 
     void Start()
     {
@@ -54,6 +55,15 @@ public class EnemyController : MonoBehaviour
                  {
                    agent.destination = startPoint; //il nemico torna alla posizione di default
                  }
+            }
+
+            if(agent.remainingDistance < .25f) //se la distanza tra il nemico e il punto in cui deve arrivare è praticamente nulla
+            {
+                anim.SetBool("isMoving", false); //ferma l'animazione della camminata 
+            }
+            else
+            {
+                anim.SetBool("isMoving", true); //fa partire animazione camminata
             }
             
         }
@@ -90,6 +100,9 @@ public class EnemyController : MonoBehaviour
                 {
                     shootTimeCounter = timeToShoot;//si resetta il valore del tempo
                 }
+
+                anim.SetBool("isMoving", true); //animazione di camminata
+
             }
             else
             {
@@ -117,6 +130,8 @@ public class EnemyController : MonoBehaviour
                         if(Mathf.Abs(angle) < 30f) //se l'angolo tra il player e il nemico è minore di 30 gradi (Abs = anche se negativo, viene percepito come positivo)
                         {
                             Instantiate(bullet, firePoint.position, firePoint.rotation); //crea una copia del proiettile nella pistola
+
+                            anim.SetTrigger("fireShot"); //setta l'animazione di sparo quando spara
                         }
                         else
                         {
@@ -133,6 +148,8 @@ public class EnemyController : MonoBehaviour
             {
                 shotWaitCounter = waitBetweenShots;
             }
+
+                anim.SetBool("isMoving", false); //ferma l'animazione di camminata
 
            }
 

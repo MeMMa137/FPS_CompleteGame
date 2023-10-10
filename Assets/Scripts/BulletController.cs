@@ -40,9 +40,16 @@ public class BulletController : MonoBehaviour
             other.gameObject.GetComponent<EnemyHealthController>().DamageEnemy(damage); //allora sarà chiamata la funzione per togliere vita al nemico (DamageEnemy) nella classe "EnemyHealthController"
         }
 
+        if(other.gameObject.tag == "Headshot" && damageEnemy) //Se colpisce la testa del nemico
+        {
+            other.transform.parent.GetComponent<EnemyHealthController>().DamageEnemy(damage * 2); //il colpo avrà il doppio del danno
+            Debug.Log("colpito in testaaaahhh");
+        }
+
         if(other.gameObject.tag == "Player" && damagePlayer) //se il proiettile colpisce un oggetto di tipo "Player" e ha abilitata la funzione di "damagePlayer"
         {
-            Debug.Log("sta colpendo il giocatore a " + transform.position);
+            //Debug.Log("sta colpendo il giocatore a " + transform.position);
+            PlayerHealthController.instance.DamagePlayer(damage); //farà danno al player
         }
 
         Destroy(gameObject); //distrugge QUESTO oggetto, ovvero il proiettile
