@@ -59,4 +59,17 @@ public class PlayerHealthController : MonoBehaviour
 
     }
 
+    public void HealPlayer(int healAmount) //funzione per recuperare vita
+    {
+        currentHealth += healAmount;
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        UIController.instance.healthSlider.value = currentHealth;//cambia la grafica dello slider con la vita attuale
+        UIController.instance.healthText.text = "VITA: " + currentHealth + "/" + maxHealth; //imposta la scritta della vita attuale
+    }
+
 }

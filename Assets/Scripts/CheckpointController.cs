@@ -14,6 +14,7 @@ public class CheckpointController : MonoBehaviour
             if (PlayerPrefs.GetString(SceneManager.GetActiveScene().name + "_cp") == cpName) //verifica se l'ultimo checkpoint salvato corrisponde con questo
             {
                 PlayerController.instance.transform.position = transform.position; //teletrasporta qua il player
+                Physics.SyncTransforms(); //*non in codice tut, potrebbe causare problemi
                 Debug.Log("sei tornato a: " + cpName);
             }
         }
@@ -23,10 +24,10 @@ public class CheckpointController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // if (Input.GetKeyDown(KeyCode.L))
-       // {
-          //  PlayerPrefs.SetString(SceneManager.GetActiveScene().name + "_cp", ""); //se premuto L, tornerà al punto di partenza, non dal chec
-       // }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            PlayerPrefs.SetString(SceneManager.GetActiveScene().name + "_cp", ""); //se premuto L, tornerà al punto di partenza, non dal chec
+        }
         
     }
 

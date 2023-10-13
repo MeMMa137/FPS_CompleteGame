@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     public GameObject bullet;
     public Transform firePoint;
 
+    public Gun activeGun;
+
     private void Awake() //funzione chiamata prima di start, quindi caricata 1 sola volta prima del caricamento del gioco
     {
         instance = this; //l'oggetto a cui è associato questo script (player) allora verrà inserito in "instance"
@@ -112,7 +114,8 @@ public class PlayerController : MonoBehaviour
 
 
         //Shooting
-        if (Input.GetMouseButtonDown(0)) //mouse sinistro
+        //singolo colpo
+        if (Input.GetMouseButtonDown(0) && activeGun.fireCounter <= 0) //mouse sinistro premuto, e limita il numero di colpi
         {
             RaycastHit hit; //linea immaginaria
             if(Physics.Raycast(camTrans.position, camTrans.forward, out hit, 50f)) //se la linea immaginaria (raycast), che va dalla posizione della videocamera fino a 50 unità verso il punto in cui sta gaurdando, colpisce un oggetto-
@@ -129,11 +132,32 @@ public class PlayerController : MonoBehaviour
                 firePoint.LookAt(camTrans.position + (camTrans.forward * 30f)); //Se il raycast non individua nessun oggetto, e si spara, allora continuerà verso la direzione della videocamera, dando l'impressione di andare dritto
             }
 
-            Instantiate(bullet, firePoint.position, firePoint.rotation); //creiamo una copia del proiettile, in modo che venga sparato
+            //Instantiate(bullet, firePoint.position, firePoint.rotation); //creiamo una copia del proiettile, in modo che venga sparato
+            FireShot();
+        }
+
+        //ripetizioni colpi
+        if (Input.GetMouseButton(0)&&activeGun.canAutoFire) //Se mouse sinistro tenuto premuto e la pistola ha l'abilità dello sparo continuo
+        {
+            if(activeGun.fireCounter <= 0)
+            {
+                FireShot();
+            }
         }
 
         //animazione spostamento
         anim.SetFloat("moveSpeed", moveInput.magnitude);
         anim.SetBool("onGround", canJump);
+    }
+
+    public void FireShot()
+    {
+        if(activeGun.currentAmmo > 0) //possiamo sparare solo se abbiamo colpi
+        {
+        activeGun.currentAmmo--;
+        Instantiate(activeGun.bullet, firePoint.position, firePoint.rotation); //creiamo una copia del proiettile, in modo che venga sparato
+
+        activeGun.fireCounter = activeGun.fireRate; //il fireCounter sarà uguale al numero di secondi di attesa tra uno sparo e l'altro
+        }
     }
 }
