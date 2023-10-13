@@ -107,7 +107,10 @@ public class EnemyController : MonoBehaviour
             else
             {
 
-            
+                if (PlayerController.instance.gameObject.activeInHierarchy) //esegue solo se il player è attivo in scena
+                {
+                    
+                
 
             shootTimeCounter -= Time.deltaTime;
 
@@ -149,6 +152,7 @@ public class EnemyController : MonoBehaviour
                 shotWaitCounter = waitBetweenShots;
             }
 
+                }
                 anim.SetBool("isMoving", false); //ferma l'animazione di camminata
 
            }

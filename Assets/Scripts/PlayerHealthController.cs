@@ -42,12 +42,16 @@ public class PlayerHealthController : MonoBehaviour
             if(currentHealth <= 0) //se muore
             {
                gameObject.SetActive(false); //freeza la scena
+
+                currentHealth = 0; //per evitare che venga mostrato a video un numero inferiore a 0
+
+                GameManager.instance.PlayerDied();
             }
 
             invincCounter = invincibleLength; //resetta il conto alla rovescia x invincibilità
 
             UIController.instance.healthSlider.value = currentHealth;//cambia la grafica dello slider con la vita attuale
-            UIController.instance.healthText.text = "HEALTH: " + currentHealth + "/" + maxHealth; //imposta la scritta della vita attuale
+            UIController.instance.healthText.text = "VITA: " + currentHealth + "/" + maxHealth; //imposta la scritta della vita attuale
 
         }
 
