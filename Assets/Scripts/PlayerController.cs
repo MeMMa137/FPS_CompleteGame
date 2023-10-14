@@ -25,10 +25,12 @@ public class PlayerController : MonoBehaviour
 
     public Animator anim;
 
-    public GameObject bullet;
+    //public GameObject bullet;
     public Transform firePoint;
 
     public Gun activeGun;
+    public List<Gun> allGuns = new List<Gun>(); //Crea una lista con tutte le armi
+    public int currentGun; //variabile nella quale si inserisce il numero corrispondente nella lista allGuns per switcharla 
 
     private void Awake() //funzione chiamata prima di start, quindi caricata 1 sola volta prima del caricamento del gioco
     {
@@ -37,7 +39,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        
+        currentGun--; //andiamo indietro di 1 nelle armi perchè nella funzione switch verrà incrementato di 1, cosa che non vogliamo all'avvio del gioco (in poche parole non cambia arma) 
+        SwitchGun();
     }
 
     void Update()
@@ -145,6 +148,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+
+        //switch armi
+        if (Input.GetKeyDown(KeyCode.Tab)) 
+        {
+            SwitchGun();
+        }
+
         //animazione spostamento
         anim.SetFloat("moveSpeed", moveInput.magnitude);
         anim.SetBool("onGround", canJump);
@@ -154,10 +164,31 @@ public class PlayerController : MonoBehaviour
     {
         if(activeGun.currentAmmo > 0) //possiamo sparare solo se abbiamo colpi
         {
-        activeGun.currentAmmo--;
-        Instantiate(activeGun.bullet, firePoint.position, firePoint.rotation); //creiamo una copia del proiettile, in modo che venga sparato
+            activeGun.currentAmmo--;
+            Instantiate(activeGun.bullet, firePoint.position, firePoint.rotation); //creiamo una copia del proiettile, in modo che venga sparato
 
-        activeGun.fireCounter = activeGun.fireRate; //il fireCounter sarà uguale al numero di secondi di attesa tra uno sparo e l'altro
+            activeGun.fireCounter = activeGun.fireRate; //il fireCounter sarà uguale al numero di secondi di attesa tra uno sparo e l'altro
+
+            UIController.instance.ammoText.text = "COLPI: " + activeGun.currentAmmo; //aggiorna la barra di munizioni grafica
         }
     }
+
+    public void SwitchGun()
+    {
+        activeGun.gameObject.SetActive(false); //rimuove l'arma attuale
+
+        currentGun++; //scorre l'arma nella lista allGuns
+
+        if(currentGun >= allGuns.Count) //se il numero della lista allGuns supera il numero effettivo delle armi (3)
+        {
+            currentGun = 0; //torna alla prima arma
+        }
+        activeGun = allGuns[currentGun]; //inserisce come arma di partenza quella scelta dalla varialine currentGun
+        activeGun.gameObject.SetActive(true); //applica effettivamente l'arma attuale in gioco
+
+        UIController.instance.ammoText.text = "COLPI: " + activeGun.currentAmmo; //aggiorna la barra di munizioni grafica
+
+        firePoint.position = activeGun.firepoint.position; //cambia la posizione del firepoint in base all'arma attuale
+    }
+
 }
