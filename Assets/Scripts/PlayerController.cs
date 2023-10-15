@@ -155,6 +155,17 @@ public class PlayerController : MonoBehaviour
             SwitchGun();
         }
 
+        if (Input.GetMouseButtonDown(1))
+        {
+            CameraController.instance.ZoomIn(activeGun.zoomAmount); //quando miriamo, avvia l'effetto zoom
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            CameraController.instance.ZoomOut(); //se smette di mirare, toglie effetto zoom
+        }
+
+
         //animazione spostamento
         anim.SetFloat("moveSpeed", moveInput.magnitude);
         anim.SetBool("onGround", canJump);

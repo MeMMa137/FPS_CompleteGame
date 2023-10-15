@@ -14,6 +14,8 @@ public class Gun : MonoBehaviour
 
     public Transform firepoint;
 
+    public float zoomAmount;
+
     void Start()
     {
         
