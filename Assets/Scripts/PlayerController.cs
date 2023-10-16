@@ -30,7 +30,13 @@ public class PlayerController : MonoBehaviour
 
     public Gun activeGun;
     public List<Gun> allGuns = new List<Gun>(); //Crea una lista con tutte le armi
+    public List<Gun> unlockableGuns = new List<Gun>();
     public int currentGun; //variabile nella quale si inserisce il numero corrispondente nella lista allGuns per switcharla 
+
+
+    public Transform adsPoint, gunHolder;
+    private Vector3 gunStartPos;
+    public float adsSpeed = 2f;
 
     private void Awake() //funzione chiamata prima di start, quindi caricata 1 sola volta prima del caricamento del gioco
     {
@@ -41,6 +47,8 @@ public class PlayerController : MonoBehaviour
     {
         currentGun--; //andiamo indietro di 1 nelle armi perchè nella funzione switch verrà incrementato di 1, cosa che non vogliamo all'avvio del gioco (in poche parole non cambia arma) 
         SwitchGun();
+
+        gunStartPos = gunHolder.localPosition;
     }
 
     void Update()
@@ -160,11 +168,20 @@ public class PlayerController : MonoBehaviour
             CameraController.instance.ZoomIn(activeGun.zoomAmount); //quando miriamo, avvia l'effetto zoom
         }
 
+        if (Input.GetMouseButton(1))
+        {
+            gunHolder.position = Vector3.MoveTowards(gunHolder.position, adsPoint.position, adsSpeed * Time.deltaTime);
+        } else
+        {
+            gunHolder.localPosition = Vector3.MoveTowards(gunHolder.localPosition, gunStartPos, adsSpeed * Time.deltaTime);
+        }
+
+
         if (Input.GetMouseButtonUp(1))
         {
             CameraController.instance.ZoomOut(); //se smette di mirare, toglie effetto zoom
         }
-
+       
 
         //animazione spostamento
         anim.SetFloat("moveSpeed", moveInput.magnitude);
@@ -200,6 +217,31 @@ public class PlayerController : MonoBehaviour
         UIController.instance.ammoText.text = "COLPI: " + activeGun.currentAmmo; //aggiorna la barra di munizioni grafica
 
         firePoint.position = activeGun.firepoint.position; //cambia la posizione del firepoint in base all'arma attuale
+    }
+
+    public void AddGun(string gunToAdd)
+    {
+        //sblocca le armi
+        bool gunUnlocked = false;
+        if(unlockableGuns.Count > 0) //se il numero di armi ancora da sbloccare è >0
+        {
+            for(int i=0; i < unlockableGuns.Count; i++)//controlla ogni arma della lista
+            {
+                if(unlockableGuns[i].gunName == gunToAdd) 
+                {
+                    gunUnlocked = true;
+                    allGuns.Add(unlockableGuns[i]);
+                    unlockableGuns.RemoveAt(i); //rimuove l'arma dalla lista di armi ancora da sbloccare
+                    i = unlockableGuns.Count; //esce dal loop
+                }
+            }
+        }
+
+        if (gunUnlocked) //cambia l'arma al player in base a quella sbloccata
+        {
+            currentGun = allGuns.Count - 2;
+            SwitchGun();
+        }
     }
 
 }

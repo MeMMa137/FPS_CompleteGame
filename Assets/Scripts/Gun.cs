@@ -16,6 +16,7 @@ public class Gun : MonoBehaviour
 
     public float zoomAmount;
 
+    public string gunName;
     void Start()
     {
         
