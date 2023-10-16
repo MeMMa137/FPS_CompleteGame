@@ -39,6 +39,8 @@ public class PlayerHealthController : MonoBehaviour
         {
             currentHealth -= damageAmount; //toglie vita
 
+            UIController.instance.ShowDamage();
+
             if(currentHealth <= 0) //se muore
             {
                gameObject.SetActive(false); //freeza la scena

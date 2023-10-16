@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 gunStartPos;
     public float adsSpeed = 2f;
 
+    public GameObject muzzleFlash;
     private void Awake() //funzione chiamata prima di start, quindi caricata 1 sola volta prima del caricamento del gioco
     {
         instance = this; //l'oggetto a cui è associato questo script (player) allora verrà inserito in "instance"
@@ -123,6 +124,7 @@ public class PlayerController : MonoBehaviour
 
         camTrans.rotation = Quaternion.Euler(camTrans.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f)); //sposta la visuale sull'asse y
 
+        muzzleFlash.SetActive(false);
 
         //Shooting
         //singolo colpo
@@ -198,6 +200,8 @@ public class PlayerController : MonoBehaviour
             activeGun.fireCounter = activeGun.fireRate; //il fireCounter sarà uguale al numero di secondi di attesa tra uno sparo e l'altro
 
             UIController.instance.ammoText.text = "COLPI: " + activeGun.currentAmmo; //aggiorna la barra di munizioni grafica
+
+            muzzleFlash.SetActive(true);
         }
     }
 
