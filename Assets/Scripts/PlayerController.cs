@@ -54,8 +54,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        /*moveInput.x = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-        moveInput.z = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;*/
+
+        if (!UIController.instance.pauseScreen.activeInHierarchy)
+        {
+
 
         //prendo velocità di y
         float yStore = moveInput.y; //prende le coordinate sul momento di y del player
@@ -188,6 +190,8 @@ public class PlayerController : MonoBehaviour
         //animazione spostamento
         anim.SetFloat("moveSpeed", moveInput.magnitude);
         anim.SetBool("onGround", canJump);
+
+        }
     }
 
     public void FireShot()
