@@ -37,6 +37,7 @@ public class PlayerHealthController : MonoBehaviour
     {
         if(invincCounter <= 0) //potremo prendere danno solo se il contatore di invincibilità sarà finito
         {
+            AudioManager.instance.PlaySXF(7);
             currentHealth -= damageAmount; //toglie vita
 
             UIController.instance.ShowDamage();
@@ -48,6 +49,10 @@ public class PlayerHealthController : MonoBehaviour
                 currentHealth = 0; //per evitare che venga mostrato a video un numero inferiore a 0
 
                 GameManager.instance.PlayerDied();
+
+                AudioManager.instance.StopBGM();
+                AudioManager.instance.PlaySXF(6);
+                AudioManager.instance.StopSFX(7);
             }
 
             invincCounter = invincibleLength; //resetta il conto alla rovescia x invincibilità

@@ -16,6 +16,9 @@ public class WeaponPickup : MonoBehaviour
             Destroy(gameObject); //distrugge l'oggetto 
 
             collected = true; //lo segnerà come preso
+
+            AudioManager.instance.PlaySXF(4);
+
         }
     }
 }

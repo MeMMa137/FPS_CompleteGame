@@ -37,6 +37,8 @@ public class CheckpointController : MonoBehaviour
         {
             PlayerPrefs.SetString(SceneManager.GetActiveScene().name + "_cp", cpName); //salva i dati del checkpoint in modo "forzato"
             Debug.Log("sei sul cp: " + cpName);
+
+            AudioManager.instance.PlaySXF(1);
         }
     }
 

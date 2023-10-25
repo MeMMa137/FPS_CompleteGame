@@ -15,6 +15,9 @@ public class AmmoPickup : MonoBehaviour
             Destroy(gameObject); //distrugge l'oggetto della croce
 
             collected = true; //lo segnerà come preso
+
+            AudioManager.instance.PlaySXF(3);
+
         }
     }
 }

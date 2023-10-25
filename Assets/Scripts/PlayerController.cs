@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     public float adsSpeed = 2f;
 
     public GameObject muzzleFlash;
+
+    public AudioSource footstepFast, footstepSlow;
     private void Awake() //funzione chiamata prima di start, quindi caricata 1 sola volta prima del caricamento del gioco
     {
         instance = this; //l'oggetto a cui è associato questo script (player) allora verrà inserito in "instance"
@@ -98,10 +100,13 @@ public class PlayerController : MonoBehaviour
         {
             moveInput.y = jumpPower;
             canDoubleJump = true;
-        } else if(canDoubleJump && Input.GetKeyDown(KeyCode.Space))
+            AudioManager.instance.PlaySXF(8);
+        } 
+        else if(canDoubleJump && Input.GetKeyDown(KeyCode.Space))
         {
-            moveInput.y = jumpPower;
-            canDoubleJump = false;
+          moveInput.y = jumpPower;
+          canDoubleJump = false;
+          AudioManager.instance.PlaySXF(8);
         }
 
 

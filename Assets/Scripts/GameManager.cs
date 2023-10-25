@@ -47,6 +47,10 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
 
             Time.timeScale = 1f; //riattiva il gioco dopo il menu
+
+            PlayerController.instance.footstepFast.Play();
+            PlayerController.instance.footstepSlow.Play();
+
         }
         else
         {
@@ -54,6 +58,9 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
 
             Time.timeScale = 0f; //blocca il gioco
+
+            PlayerController.instance.footstepFast.Stop();
+            PlayerController.instance.footstepSlow.Stop();
         }
     }
 
