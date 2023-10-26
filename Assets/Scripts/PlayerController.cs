@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour
     public GameObject muzzleFlash;
 
     public AudioSource footstepFast, footstepSlow;
+
+    private float bounceAmount;
+    private bool bounce;
+
+
     private void Awake() //funzione chiamata prima di start, quindi caricata 1 sola volta prima del caricamento del gioco
     {
         instance = this; //l'oggetto a cui è associato questo script (player) allora verrà inserito in "instance"
@@ -109,7 +114,13 @@ public class PlayerController : MonoBehaviour
           AudioManager.instance.PlaySXF(8);
         }
 
+            if (bounce) //evita di creare problemi nel caso il player saltasse sulla bouncepad
+            {
+                bounce = false;
+                moveInput.y = bounceAmount;
 
+                canDoubleJump = true;
+            }
 
 
         charCon.Move(moveInput * Time.deltaTime); //si sposta
@@ -255,6 +266,12 @@ public class PlayerController : MonoBehaviour
             currentGun = allGuns.Count - 2;
             SwitchGun();
         }
+    }
+
+    public void Bounce(float bounceForce)
+    {
+        bounceAmount = bounceForce;
+        bounce = true;
     }
 
 }
