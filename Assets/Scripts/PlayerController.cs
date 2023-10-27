@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        if (!UIController.instance.pauseScreen.activeInHierarchy)
+        if (!UIController.instance.pauseScreen.activeInHierarchy && !GameManager.instance.levelEnding)
         {
 
 

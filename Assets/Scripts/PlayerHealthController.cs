@@ -35,7 +35,7 @@ public class PlayerHealthController : MonoBehaviour
     }
     public void DamagePlayer(int damageAmount)
     {
-        if(invincCounter <= 0) //potremo prendere danno solo se il contatore di invincibilità sarà finito
+        if(invincCounter <= 0 && !GameManager.instance.levelEnding) //potremo prendere danno solo se il contatore di invincibilità sarà finito
         {
             AudioManager.instance.PlaySXF(7);
             currentHealth -= damageAmount; //toglie vita

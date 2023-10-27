@@ -720,7 +720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf8b486b377bc941ae33e16ab057dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstLevel: test
+  firstLevel: example
 --- !u!1 &1149903950
 GameObject:
   m_ObjectHideFlags: 0

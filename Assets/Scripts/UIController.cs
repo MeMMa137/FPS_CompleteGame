@@ -13,6 +13,10 @@ public class UIController : MonoBehaviour
     public float damageAlpha = .25f, damageFadeSpeed = 2f; //alpha=intensità colore immagine
 
     public GameObject pauseScreen;
+
+    public Image blackScreen;
+    public float fadeSpeed = 1.5f;
+
     private void Awake()
     {
         instance = this;
@@ -29,6 +33,15 @@ public class UIController : MonoBehaviour
         if(damageEffect.color.a != 0) //Se non ha ancora tolto l'effetto immagine rossa da danno, lo fa
         {
             damageEffect.color = new Color(damageEffect.color.r, damageEffect.color.g, damageEffect.color.b, Mathf.MoveTowards(damageEffect.color.a, 0f, damageFadeSpeed * Time.deltaTime));
+        }
+
+        if (!GameManager.instance.levelEnding)
+        {
+            blackScreen.color = new Color(blackScreen.color.r, blackScreen.color.g, blackScreen.color.b, Mathf.MoveTowards(blackScreen.color.a, 0f, fadeSpeed*Time.deltaTime));
+        }
+        else
+        {
+            blackScreen.color = new Color(blackScreen.color.r, blackScreen.color.g, blackScreen.color.b, Mathf.MoveTowards(blackScreen.color.a, 1f, fadeSpeed * Time.deltaTime));
         }
     }
 
