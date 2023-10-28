@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
         {
             UIController.instance.pauseScreen.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
 
             Time.timeScale = 1f; //riattiva il gioco dopo il menu
 
@@ -59,6 +61,7 @@ public class GameManager : MonoBehaviour
         {
             UIController.instance.pauseScreen.SetActive(true); //attiva menu in gioco
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
 
             Time.timeScale = 0f; //blocca il gioco
 

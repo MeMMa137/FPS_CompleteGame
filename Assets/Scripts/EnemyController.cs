@@ -23,6 +23,8 @@ public class EnemyController : MonoBehaviour
 
     public Animator anim;
 
+    private bool wasShot;
+
     void Start()
     {
         startPoint = transform.position;
@@ -87,9 +89,16 @@ public class EnemyController : MonoBehaviour
 
             if(Vector3.Distance(transform.position, targetPoint) > distanceToChase) //se la distanza tra il nemico e il player è maggiore della distanza minima per poter essere seguito
             {
-                chasing = false; // NON attiva l'inseguimento
+                if (!wasShot)
+                {
+                    chasing = false; // NON attiva l'inseguimento
+                    chaseCounter = keepChasingTime; //resetta il conto alla rovescia 
+                }
 
-                chaseCounter = keepChasingTime; //resetta il conto alla rovescia 
+            }
+            else
+            {
+                wasShot = false;
             }
 
             if(shotWaitCounter > 0) //se si trova quindi nel range partirà lo shotWaitCounter
@@ -158,6 +167,15 @@ public class EnemyController : MonoBehaviour
            }
 
         }
+
+        
+    }
+
+    public void GetShot()
+    {
+        wasShot = true;
+
+        chasing = true;
 
         
     }

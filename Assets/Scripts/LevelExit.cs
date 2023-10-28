@@ -36,6 +36,7 @@ public class LevelExit : MonoBehaviour
     private IEnumerator EndLevelCo()
     {
         PlayerPrefs.SetString(nextLevel + "_cp", "");
+        PlayerPrefs.SetString("CurrentLevel", nextLevel); //problema?
 
         yield return new WaitForSeconds(waitToEndLevel);
 

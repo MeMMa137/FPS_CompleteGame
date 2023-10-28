@@ -1203,6 +1203,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 1384688564297292549, guid: e288693a44b84c448ac4701073bdfccb,
+        type: 3}
+      propertyPath: volumeTrigger
+      value: 
+      objectReference: {fileID: 153780458}
     - target: {fileID: 1384688564297292550, guid: e288693a44b84c448ac4701073bdfccb,
         type: 3}
       propertyPath: target
@@ -1326,6 +1331,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 570343208807486726, guid: 7865bfe466407474e91eeb0bdc5daf34,
+        type: 3}
+      propertyPath: nextLevel
+      value: test
       objectReference: {fileID: 0}
     - target: {fileID: 570343208807486727, guid: 7865bfe466407474e91eeb0bdc5daf34,
         type: 3}
