@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Udemy FPS Assets/Setup Scenes/Level 2.unity
     guid: 76d96dfd3c15f384b98c2760244cbb4d
-  m_configObjects: {}
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 65a7ef0d6e7fc224e8d48db2764cc786,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 6f6dd706f604ecf4f8c3a56cb8cff583,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 38e3e0562c6c0aa468156a3f107be849,
+      type: 2}

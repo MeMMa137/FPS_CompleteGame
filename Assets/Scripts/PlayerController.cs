@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
         canJump = Physics.OverlapSphere(groundCheckPoint.position, .25f, whatIsGround).Length > 0; //verifica se la sfera del ground tocca un oggetto, se viene toccata allora ne conterà uno, .length rileva se è maggiore di 0 (quindi toccata), allora la variabile = true
 
 
-       //riga di salto mancante, possibile problema
+       
 
         //Salto
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
@@ -157,8 +157,9 @@ public class PlayerController : MonoBehaviour
 
         //Shooting
         //singolo colpo
-        if (Input.GetMouseButtonDown(0) && activeGun.fireCounter <= 0) //mouse sinistro premuto, e limita il numero di colpi
+        if (OVRInput.GetDown(OVRInput.Button.One) && activeGun.fireCounter <= 0) //mouse sinistro premuto, e limita il numero di colpi
         {
+                Debug.Log("premto tasto 1");
             RaycastHit hit; //linea immaginaria
             if(Physics.Raycast(camTrans.position, camTrans.forward, out hit, 50f)) //se la linea immaginaria (raycast), che va dalla posizione della videocamera fino a 50 unità verso il punto in cui sta gaurdando, colpisce un oggetto-
                                                                                    //allora il punto verrà salvato in "hit", e if=true
