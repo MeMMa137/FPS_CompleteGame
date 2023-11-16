@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
         moveInput.Normalize(); //si assicura che, andando in 2 direzioni contemporaneamente, non venga aumentata la velocita'
         
         //camminata e corsa
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
         {
             moveInput = moveInput * runSpeed;
         }
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
        
 
         //Salto
-        if (Input.GetKeyDown(KeyCode.Space) && canJump)
+        if (OVRInput.GetDown(OVRInput.Button.One) && canJump)
         {
             moveInput.y = jumpPower;
             canDoubleJump = true;
@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
 
         //Shooting
         //singolo colpo
-        if (OVRInput.GetDown(OVRInput.Button.One) && activeGun.fireCounter <= 0) //mouse sinistro premuto, e limita il numero di colpi
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && activeGun.fireCounter <= 0) //mouse sinistro premuto, e limita il numero di colpi
         {
                 Debug.Log("premto tasto 1");
             RaycastHit hit; //linea immaginaria
@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //ripetizioni colpi
-        if (Input.GetMouseButton(0)&&activeGun.canAutoFire) //Se mouse sinistro tenuto premuto e la pistola ha l'abilità dello sparo continuo
+        if (OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger) && activeGun.canAutoFire) //Se mouse sinistro tenuto premuto e la pistola ha l'abilità dello sparo continuo
         {
             if(activeGun.fireCounter <= 0)
             {
@@ -190,7 +190,7 @@ public class PlayerController : MonoBehaviour
 
 
         //switch armi
-        if (Input.GetKeyDown(KeyCode.Tab)) 
+        if (OVRInput.GetDown(OVRInput.Button.Three)) 
         {
             SwitchGun();
         }
