@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveInput;
 
     public Transform camTrans;
+    public Transform vrCamTrans;
 
     public float mouseSensivity;
     public bool invertX; 
@@ -156,15 +157,16 @@ public class PlayerController : MonoBehaviour
         muzzleFlash.SetActive(false);
 
         //Shooting
+        Transform ct = vrCamTrans;// camTrans;
         //singolo colpo
         if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && activeGun.fireCounter <= 0) //mouse sinistro premuto, e limita il numero di colpi
         {
-                Debug.Log("premto tasto 1");
+            Debug.Log("premto tasto 1");
             RaycastHit hit; //linea immaginaria
-            if(Physics.Raycast(camTrans.position, camTrans.forward, out hit, 50f)) //se la linea immaginaria (raycast), che va dalla posizione della videocamera fino a 50 unità verso il punto in cui sta gaurdando, colpisce un oggetto-
+            if(Physics.Raycast(ct.position, ct.forward, out hit, 50f)) //se la linea immaginaria (raycast), che va dalla posizione della videocamera fino a 50 unità verso il punto in cui sta gaurdando, colpisce un oggetto-
                                                                                    //allora il punto verrà salvato in "hit", e if=true
             {
-                if(Vector3.Distance(camTrans.position, hit.point) > 2) //se il player si trova abbastanza lontano da un oggetto (distanza tra player e punto di sparo > 2)
+                if(Vector3.Distance(ct.position, hit.point) > 2) //se il player si trova abbastanza lontano da un oggetto (distanza tra player e punto di sparo > 2)
                 {
                     firePoint.LookAt(hit.point); //il colpo si direzionerà verso il punto di "hit"
                 }
@@ -172,7 +174,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                firePoint.LookAt(camTrans.position + (camTrans.forward * 30f)); //Se il raycast non individua nessun oggetto, e si spara, allora continuerà verso la direzione della videocamera, dando l'impressione di andare dritto
+                firePoint.LookAt(ct.position + (ct.forward * 30f)); //Se il raycast non individua nessun oggetto, e si spara, allora continuerà verso la direzione della videocamera, dando l'impressione di andare dritto
             }
 
             //Instantiate(bullet, firePoint.position, firePoint.rotation); //creiamo una copia del proiettile, in modo che venga sparato

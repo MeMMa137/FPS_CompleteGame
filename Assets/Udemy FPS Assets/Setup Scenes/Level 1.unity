@@ -1593,6 +1593,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+      propertyPath: field of view
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -19537,7 +19545,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4517106533003969372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 364}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19545,7 +19553,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 232, y: 38}
+  m_AnchoredPosition: {x: 1402.9001, y: 263}
   m_SizeDelta: {x: 453, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4517106533003969377
@@ -19564,7 +19572,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4517106533140802257}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 172.00006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19572,7 +19580,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206.47021, y: -45.05005}
+  m_AnchoredPosition: {x: 206.47021, y: -541}
   m_SizeDelta: {x: 350.2735, y: 48.216614}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4517106533140802257
@@ -20223,7 +20231,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4517106533613833876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 172.00006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20231,7 +20239,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 231.3003, y: -50.30005}
+  m_AnchoredPosition: {x: 231.3003, y: -546.25}
   m_SizeDelta: {x: 453, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4517106533613833881
@@ -20354,7 +20362,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4517106533716256900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20365,7 +20373,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 205.93994, y: -45.05005}
+  m_AnchoredPosition: {x: 205.93994, y: -541}
   m_SizeDelta: {x: 355.74786, y: 53.49341}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4517106533900904224
@@ -20751,7 +20759,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4517106534191957496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 364}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20759,7 +20767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 200.1, y: 38}
+  m_AnchoredPosition: {x: 1371, y: 263}
   m_SizeDelta: {x: 350.2735, y: 48.216553}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4517106534191957500
@@ -21290,9 +21298,9 @@ Canvas:
   m_GameObject: {fileID: 4517106534771404999}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 306215540}
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -24346,6 +24354,7 @@ MonoBehaviour:
   runSpeed: 15
   charCon: {fileID: 9029129143541587238}
   camTrans: {fileID: 9029129144004078098}
+  vrCamTrans: {fileID: 838459825}
   mouseSensivity: 5
   invertX: 0
   invertY: 0
@@ -26040,11 +26049,11 @@ SceneRoots:
   m_Roots:
   - {fileID: 1986853903}
   - {fileID: 9029129143541587239}
+  - {fileID: 4517106534771405003}
   - {fileID: 1384688565047874551}
   - {fileID: 5723621821191598817}
   - {fileID: 570343207074173501}
   - {fileID: 1105365171}
-  - {fileID: 4517106534771405003}
   - {fileID: 1405932676}
   - {fileID: 783735662}
   - {fileID: 1586693807}
