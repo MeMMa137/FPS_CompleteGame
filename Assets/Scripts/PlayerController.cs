@@ -193,7 +193,7 @@ public class PlayerController : MonoBehaviour
 
 
         //switch armi
-        if (OVRInput.GetDown(OVRInput.Button.Three)) 
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger)) 
         {
             SwitchGun();
         }

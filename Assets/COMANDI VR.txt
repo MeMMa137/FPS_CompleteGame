@@ -1,7 +1,7 @@
 COMANDI VR:
 
-A = salto
-X = switch armi
+A = 
 B = pausa
 sottoL = corsa
+IndexL = switch armi
 IndexR = spara
